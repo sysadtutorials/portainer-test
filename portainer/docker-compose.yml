@@ -1,0 +1,29 @@
+version: "3"
+
+services: 
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - 1800:80
+    volumes: 
+      - /opt/nginx:/etc/nginx/conf.d
+
+  haproxy:
+    image: haproxy:1.7-alpine
+    container_name: haproxy
+    ports:
+      - 80:80
+    volumes: 
+      - /opt/haproxy:/usr/local/etc/haproxy
+
+  portainer:
+    image: portainer/portainer-ce:2.1.1-alpine
+    container_name: portainer
+    volumes: 
+      - /opt/portainer/data:/data
+    ports: 
+      - 19000:9000
+      - 18000:8000
+      
